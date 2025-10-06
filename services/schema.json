@@ -1,0 +1,12 @@
+{
+    "service_name": "",
+    "service_icon": "",
+    "description": "",
+    "tags": [
+        ""
+    ],
+    "difficulty": 1,
+    "availability_scope": "zonal",
+    "integrations": [""],
+    "related_services": [""]
+}

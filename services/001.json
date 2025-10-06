@@ -1,0 +1,27 @@
+{
+  "service_name": "Amazon Cognito",
+  "service_icon": "",
+  "description": "Amazon Cognito provides authentication, authorization, and user management for web and mobile apps. It enables users to sign in directly with a username and password or through third parties such as Google, Apple, Facebook, or enterprise identity providers.",
+  "tags": [
+    "security",
+    "identity",
+    "authentication"
+  ],
+  "difficulty": 2,
+  "availability_scope": "regional",
+  "integrations": [
+    "AWS Lambda",
+    "Amazon API Gateway",
+    "Amazon S3",
+    "Amazon CloudFront",
+    "AWS AppSync",
+    "Amazon Aurora"
+  ],
+  "related_services": [
+    "AWS IAM",
+    "AWS WAF",
+    "AWS Shield",
+    "AWS Secrets Manager",
+    "AWS KMS"
+  ]
+}
