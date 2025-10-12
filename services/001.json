@@ -1,27 +1,519 @@
 {
-  "service_name": "Amazon Cognito",
-  "service_icon": "",
-  "description": "Amazon Cognito provides authentication, authorization, and user management for web and mobile apps. It enables users to sign in directly with a username and password or through third parties such as Google, Apple, Facebook, or enterprise identity providers.",
-  "tags": [
-    "security",
-    "identity",
-    "authentication"
-  ],
-  "difficulty": 2,
-  "availability_scope": "regional",
-  "integrations": [
-    "AWS Lambda",
-    "Amazon API Gateway",
-    "Amazon S3",
-    "Amazon CloudFront",
-    "AWS AppSync",
-    "Amazon Aurora"
-  ],
-  "related_services": [
-    "AWS IAM",
-    "AWS WAF",
-    "AWS Shield",
-    "AWS Secrets Manager",
-    "AWS KMS"
-  ]
+ "services": [
+   {
+     "service_name": "Amazon Cognito",
+     "service_icon": "https://icon.icepanel.io/AWS/svg/Security-Identity-Compliance/Cognito.svg",
+     "description": "Provides authentication, authorization, and user management for web and mobile apps. It enables users to sign in directly with a username and password or through third parties such as Google, Apple, Facebook, or enterprise identity providers.",
+     "tags": [
+       "security",
+       "identity",
+       "authentication"
+     ],
+     "difficulty": 2,
+     "availability_scope": "regional",
+     "integrations": [
+       "AWS Lambda",
+       "Amazon API Gateway",
+       "Amazon S3",
+       "Amazon CloudFront",
+       "AWS AppSync",
+       "Amazon Aurora"
+     ],
+     "related_services": [
+       "AWS IAM",
+       "AWS WAF",
+       "AWS Shield",
+       "AWS Secrets Manager",
+       "AWS KMS"
+     ],
+     "acronym": ""
+   },
+
+   {
+       "service_name": "AWS Lambda",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Compute/Lambda.svg",
+       "description": "Serverless compute service that runs code in response to events and automatically manages the underlying compute resources. You pay only for the compute time consumed, with no charge when code is not running.",
+       "tags": [
+           "compute",
+           "serverless",
+           "event-driven"
+       ],
+       "difficulty": 2,
+       "availability_scope": "regional",
+       "integrations": [
+           "Amazon S3",
+           "Amazon DynamoDB",
+           "Amazon API Gateway",
+           "Amazon EventBridge",
+           "Amazon SQS",
+           "Amazon SNS"
+       ],
+       "related_services": [
+           "AWS Step Functions",
+           "Amazon ECS",
+           "AWS Fargate",
+           "Amazon CloudWatch"
+       ],
+       "acronym": ""
+   },
+   {
+       "service_name": "Amazon Elastic Compute Cloud (EC2)",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Compute/EC2.svg",
+       "description": "Provides secure, resizable compute capacity in the cloud as virtual servers. Offers complete control over computing resources and allows you to scale capacity up or down based on requirements.",
+       "tags": [
+           "compute",
+           "virtual machines",
+           "infrastructure"
+       ],
+       "difficulty": 2,
+       "availability_scope": "regional",
+       "integrations": [
+           "Amazon EBS",
+           "Amazon VPC",
+           "Elastic Load Balancing",
+           "Auto Scaling",
+           "Amazon S3",
+           "AWS IAM"
+       ],
+       "related_services": [
+           "AWS Lambda",
+           "Amazon ECS",
+           "Amazon Lightsail",
+           "AWS Systems Manager"
+       ],
+       "acronym": "EC2"
+   },
+   {
+       "service_name": "Amazon EventBridge",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/App-Integration/EventBridge.svg",
+       "description": "Serverless event bus service that makes it easy to connect applications using events from your own apps, AWS services, and SaaS applications. Enables event-driven architectures at scale.",
+       "tags": [
+           "integration",
+           "serverless",
+           "event-driven"
+       ],
+       "difficulty": 2,
+       "availability_scope": "regional",
+       "integrations": [
+           "AWS Lambda",
+           "Amazon SNS",
+           "Amazon SQS",
+           "AWS Step Functions",
+           "Amazon Kinesis",
+           "AWS API Gateway"
+       ],
+       "related_services": [
+           "Amazon SNS",
+           "Amazon SQS",
+           "AWS Step Functions",
+           "Amazon CloudWatch Events"
+       ],
+       "acronym": ""
+   },
+   {
+       "service_name": "Amazon Relational Database Service (RDS)",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Database/RDS.svg",
+       "description": "Managed relational database service that makes it easy to set up, operate, and scale databases in the cloud. Supports multiple database engines including MySQL, PostgreSQL, Oracle, SQL Server, and MariaDB.",
+       "tags": [
+           "database",
+           "managed service",
+           "relational"
+       ],
+       "difficulty": 2,
+       "availability_scope": "regional",
+       "integrations": [
+           "Amazon VPC",
+           "AWS Lambda",
+           "Amazon CloudWatch",
+           "AWS Secrets Manager",
+           "AWS IAM",
+           "Amazon S3"
+       ],
+       "related_services": [
+           "Amazon Aurora",
+           "Amazon DynamoDB",
+           "Amazon Redshift",
+           "AWS Database Migration Service"
+       ],
+       "acronym": "RDS"
+   },
+   {
+       "service_name": "Amazon Simple Storage Service (S3)",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Storage/Simple-Storage-Service.svg",
+       "description": "Object storage service offering industry-leading scalability, data availability, security, and performance. Stores and retrieves any amount of data from anywhere on the web with 99.999999999% durability.",
+       "tags": [
+           "storage",
+           "object storage",
+           "scalable"
+       ],
+       "difficulty": 1,
+       "availability_scope": "regional",
+       "integrations": [
+           "AWS Lambda",
+           "Amazon CloudFront",
+           "Amazon EC2",
+           "AWS IAM",
+           "Amazon EventBridge",
+           "AWS Glue"
+       ],
+       "related_services": [
+           "Amazon EBS",
+           "Amazon EFS",
+           "Amazon Glacier",
+           "AWS Storage Gateway"
+       ],
+       "acronym": "S3"
+   },
+   {
+       "service_name": "Amazon Simple Queue Service (SQS)",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/App-Integration/Simple-Queue-Service.svg",
+       "description": "Fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. Offers standard queues for maximum throughput and FIFO queues for ordered message delivery.",
+       "tags": [
+           "messaging",
+           "queue",
+           "integration"
+       ],
+       "difficulty": 1,
+       "availability_scope": "regional",
+       "integrations": [
+           "AWS Lambda",
+           "Amazon SNS",
+           "Amazon EventBridge",
+           "Amazon EC2",
+           "AWS Step Functions",
+           "Amazon ECS"
+       ],
+       "related_services": [
+           "Amazon SNS",
+           "Amazon EventBridge",
+           "Amazon MQ",
+           "Amazon Kinesis"
+       ],
+       "acronym": "SQS"
+   },
+   {
+       "service_name": "Amazon SNS",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/App-Integration/Simple-Notification-Service.svg",
+       "description": "Fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications. Supports message delivery to multiple subscribers including mobile push, SMS, email, and HTTP endpoints.",
+       "tags": [
+           "messaging",
+           "notifications",
+           "pub/sub"
+       ],
+       "difficulty": 1,
+       "availability_scope": "regional",
+       "integrations": [
+           "AWS Lambda",
+           "Amazon SQS",
+           "Amazon EventBridge",
+           "Amazon CloudWatch",
+           "AWS Step Functions",
+           "Amazon EC2"
+       ],
+       "related_services": [
+           "Amazon SQS",
+           "Amazon EventBridge",
+           "Amazon Pinpoint",
+           "Amazon SES"
+       ],
+       "acronym": "SNS"
+   },
+   {
+       "service_name": "AWS Identity and Access Management (IAM)",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Security-Identity-Compliance/Identity-and-Access-Management.svg",
+       "description": "Identity and Access Management service that enables you to securely control access to AWS services and resources. Create and manage AWS users and groups, and use permissions to allow and deny access to AWS resources.",
+       "tags": [
+           "security",
+           "identity",
+           "access management"
+       ],
+       "difficulty": 2,
+       "availability_scope": "global",
+       "integrations": [
+           "All AWS Services",
+           "AWS Organizations",
+           "AWS STS",
+           "Amazon Cognito",
+           "AWS SSO",
+           "AWS KMS"
+       ],
+       "related_services": [
+           "Amazon Cognito",
+           "AWS Organizations",
+           "AWS Secrets Manager",
+           "AWS Directory Service"
+       ],
+       "acronym": "IAM"
+   },
+   {
+       "service_name": "Amazon CloudWatch",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Management-Governance/CloudWatch.svg",
+       "description": "Monitoring and observability service that provides data and actionable insights for AWS resources and applications. Collects and tracks metrics, logs, and events, and can trigger alarms and automated actions based on defined thresholds.",
+       "tags": [
+           "monitoring",
+           "observability",
+           "logging"
+       ],
+       "difficulty": 2,
+       "availability_scope": "regional",
+       "integrations": [
+           "AWS Lambda",
+           "Amazon EC2",
+           "Amazon RDS",
+           "Amazon SNS",
+           "AWS Auto Scaling",
+           "Amazon EventBridge"
+       ],
+       "related_services": [
+           "AWS X-Ray",
+           "AWS CloudTrail",
+           "Amazon EventBridge",
+           "AWS Systems Manager"
+       ],
+       "acronym": ""
+   },
+   {
+       "service_name": "AWS CloudFormation",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Management-Governance/CloudFormation.svg",
+       "description": "Infrastructure as Code service that allows you to model and provision AWS resources using templates. Enables you to treat infrastructure as code, version control your architecture, and deploy resources consistently and repeatedly.",
+       "tags": [
+           "infrastructure",
+           "automation",
+           "IaC"
+       ],
+       "difficulty": 3,
+       "availability_scope": "regional",
+       "integrations": [
+           "All AWS Services",
+           "AWS Lambda",
+           "Amazon S3",
+           "AWS Systems Manager",
+           "AWS Service Catalog",
+           "Amazon SNS"
+       ],
+       "related_services": [
+           "AWS CDK",
+           "AWS SAM",
+           "Terraform",
+           "AWS Service Catalog"
+       ],
+       "acronym": ""
+   },
+   {
+       "service_name": "Amazon VPC",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Networking-Content-Delivery/Virtual-Private-Cloud.svg",
+       "description": "Virtual Private Cloud service that lets you provision a logically isolated section of the AWS cloud where you can launch resources in a virtual network. Provides complete control over network configuration including IP address ranges, subnets, route tables, and network gateways.",
+       "tags": [
+           "networking",
+           "security",
+           "infrastructure"
+       ],
+       "difficulty": 3,
+       "availability_scope": "regional",
+       "integrations": [
+           "Amazon EC2",
+           "Amazon RDS",
+           "AWS Lambda",
+           "Elastic Load Balancing",
+           "Amazon ECS",
+           "AWS Direct Connect"
+       ],
+       "related_services": [
+           "AWS Transit Gateway",
+           "AWS PrivateLink",
+           "AWS VPN",
+           "AWS Direct Connect"
+       ],
+       "acronym": "VPC"
+   },
+   {
+       "service_name": "Amazon API Gateway",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/App-Integration/API-Gateway.svg",
+       "description": "Fully managed service that makes it easy to create, publish, maintain, monitor, and secure APIs at any scale. Acts as a front door for applications to access data, business logic, or functionality from backend services including AWS Lambda, EC2, or any web application.",
+       "tags": [
+           "api",
+           "serverless",
+           "integration"
+       ],
+       "difficulty": 2,
+       "availability_scope": "regional",
+       "integrations": [
+           "AWS Lambda",
+           "Amazon Cognito",
+           "AWS IAM",
+           "Amazon CloudWatch",
+           "AWS WAF",
+           "Amazon DynamoDB"
+       ],
+       "related_services": [
+           "AWS AppSync",
+           "Amazon CloudFront",
+           "AWS Lambda",
+           "Application Load Balancer"
+       ],
+       "acronym": ""
+   },
+   {
+       "service_name": "Amazon DynamoDB",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Database/DynamoDB.svg",
+       "description": "Fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. Supports both document and key-value data models with single-digit millisecond latency at any scale.",
+       "tags": [
+           "database",
+           "NoSQL",
+           "managed service"
+       ],
+       "difficulty": 2,
+       "availability_scope": "regional",
+       "integrations": [
+           "AWS Lambda",
+           "Amazon EventBridge",
+           "AWS AppSync",
+           "Amazon Kinesis",
+           "AWS Glue",
+           "Amazon S3"
+       ],
+       "related_services": [
+           "Amazon RDS",
+           "Amazon DocumentDB",
+           "Amazon Neptune",
+           "AWS DynamoDB Accelerator (DAX)"
+       ],
+       "acronym": ""
+   },
+   {
+       "service_name": "Amazon CloudFront",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Networking-Content-Delivery/CloudFront.svg",
+       "description": "Content Delivery Network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency and high transfer speeds. Integrates with AWS Shield for DDoS protection and AWS WAF for web application security.",
+       "tags": [
+           "CDN",
+           "networking",
+           "content delivery"
+       ],
+       "difficulty": 2,
+       "availability_scope": "global",
+       "integrations": [
+           "Amazon S3",
+           "AWS Lambda@Edge",
+           "Amazon EC2",
+           "Elastic Load Balancing",
+           "AWS WAF",
+           "AWS Shield"
+       ],
+       "related_services": [
+           "Amazon Route 53",
+           "AWS Global Accelerator",
+           "AWS WAF",
+           "AWS Certificate Manager"
+       ],
+       "acronym": ""
+   },
+   {
+       "service_name": "Amazon ECS",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Containers/Elastic-Container-Service.svg",
+       "description": "Elastic Container Service is a fully managed container orchestration service that makes it easy to deploy, manage, and scale containerized applications. Supports Docker containers and integrates deeply with AWS services.",
+       "tags": [
+           "containers",
+           "orchestration",
+           "compute"
+       ],
+       "difficulty": 3,
+       "availability_scope": "regional",
+       "integrations": [
+           "AWS Fargate",
+           "Amazon EC2",
+           "Elastic Load Balancing",
+           "Amazon ECR",
+           "AWS IAM",
+           "Amazon CloudWatch"
+       ],
+       "related_services": [
+           "Amazon EKS",
+           "AWS Fargate",
+           "AWS Lambda",
+           "Amazon ECR"
+       ],
+       "acronym": "ECS"
+   },
+   {
+       "service_name": "Amazon EKS",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Containers/Elastic-Kubernetes-Service.svg",
+       "description": "Elastic Kubernetes Service is a managed Kubernetes service that makes it easy to run Kubernetes on AWS without needing to install and operate your own Kubernetes control plane. Provides a certified conformant Kubernetes platform.",
+       "tags": [
+           "containers",
+           "kubernetes",
+           "orchestration"
+       ],
+       "difficulty": 4,
+       "availability_scope": "regional",
+       "integrations": [
+           "AWS Fargate",
+           "Amazon EC2",
+           "Elastic Load Balancing",
+           "Amazon ECR",
+           "AWS IAM",
+           "Amazon VPC"
+       ],
+       "related_services": [
+           "Amazon ECS",
+           "AWS Fargate",
+           "Amazon ECR",
+           "AWS App Mesh"
+       ],
+       "acronym": "EKS"
+   },
+   {
+       "service_name": "AWS Elastic Beanstalk",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Compute/Elastic-Beanstalk.svg",
+       "description": "Platform as a Service (PaaS) that makes it easy to deploy and scale web applications and services. Automatically handles deployment, capacity provisioning, load balancing, and auto-scaling while you retain full control over AWS resources.",
+       "tags": [
+           "PaaS",
+           "deployment",
+           "application management"
+       ],
+       "difficulty": 1,
+       "availability_scope": "regional",
+       "integrations": [
+           "Amazon EC2",
+           "Elastic Load Balancing",
+           "Amazon RDS",
+           "Amazon S3",
+           "Amazon CloudWatch",
+           "AWS Auto Scaling"
+       ],
+       "related_services": [
+           "AWS Lambda",
+           "Amazon ECS",
+           "AWS App Runner",
+           "AWS CloudFormation"
+       ],
+       "acronym": ""
+   },
+   {
+       "service_name": "Amazon Route 53",
+       "service_icon": "https://icon.icepanel.io/AWS/svg/Networking-Content-Delivery/Route-53.svg",
+       "description": "Highly available and scalable Domain Name System (DNS) web service designed to route end users to internet applications. Offers domain registration, DNS routing, and health checking to route traffic to healthy endpoints.",
+       "tags": [
+           "DNS",
+           "networking",
+           "domain management"
+       ],
+       "difficulty": 2,
+       "availability_scope": "global",
+       "integrations": [
+           "Amazon CloudFront",
+           "Elastic Load Balancing",
+           "Amazon S3",
+           "Amazon EC2",
+           "AWS Global Accelerator",
+           "Amazon API Gateway"
+       ],
+       "related_services": [
+           "Amazon CloudFront",
+           "AWS Global Accelerator",
+           "Elastic Load Balancing",
+           "AWS Certificate Manager"
+       ],
+       "acronym": ""
+   }
+ ] 
 }

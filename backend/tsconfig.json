@@ -10,8 +10,8 @@
       "baseUrl": "."
     },
     "include": [
-      "api_gateway/**/*",
-      "service_bank_ingestor/**/*"
+      "service_bank_ingestor/**/*",
+      "user_api_gateway/**/*",
     ],
     "exclude": [
       "dist",

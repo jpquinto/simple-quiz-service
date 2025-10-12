@@ -8,5 +8,6 @@
     "difficulty": 1,
     "availability_scope": "zonal",
     "integrations": [""],
-    "related_services": [""]
+    "related_services": [""],
+    "acronym": ""
 }
