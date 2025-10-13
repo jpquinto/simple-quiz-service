@@ -20,26 +20,35 @@ interface ServiceCommandInputProps {
   value: string;
   onChange: (value: string) => void;
   onSubmit: () => void;
+  serviceNameFormatter?: (name: string) => string;
 }
 
 export const ServiceCommandInput = ({
   value,
   onChange,
   onSubmit,
+  serviceNameFormatter,
 }: ServiceCommandInputProps) => {
   const [open, setOpen] = React.useState(false);
   const services = useServicesStore((state) => state.services);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
+  // Apply formatter to services if provided
+  const formattedServices = React.useMemo(() => {
+    return serviceNameFormatter
+      ? services.map((service) => serviceNameFormatter(service))
+      : services;
+  }, [services, serviceNameFormatter]);
+
   // Filter services based on input
   const filteredServices = React.useMemo(() => {
-    if (!value) return services.slice(0, 10);
+    if (!value) return formattedServices.slice(0, 10);
 
     const searchTerm = value.toLowerCase();
-    return services
+    return formattedServices
       .filter((service) => service.toLowerCase().includes(searchTerm))
       .slice(0, 10);
-  }, [value, services]);
+  }, [value, formattedServices]);
 
   const handleSelect = (selectedService: string) => {
     onChange(selectedService);
