@@ -8,6 +8,7 @@ import { GameOver } from "./game_over";
 import { CheckCircle, Heart, HeartCrack } from "lucide-react";
 import { TagsList } from "../ui/tag";
 import { QuizProgressBar } from "./quiz_progress_bar";
+import { ServiceCommandInput } from "./service_command_input";
 
 interface ServicesQuizClientProps {
   mode: "written" | "multiple-choice";
@@ -173,7 +174,7 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
             {Array.from({ length: 3 }).map((_, i) => (
               <div key={i}>
                 {i < lives ? (
-                  <Heart className="w-8 h-8 fill-red-border text-red-border" />
+                  <Heart className="w-8 h-8 fill-red-400 text-red-400" />
                 ) : (
                   <HeartCrack className="w-8 h-8 text-gray-300 animate-pulse" />
                 )}
@@ -192,7 +193,7 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
 
         {/* Error State */}
         {error && (
-          <div className="bg-red-100 border border-red-border text-red-700 px-4 py-3 rounded mb-4">
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             {error}
           </div>
         )}
@@ -210,18 +211,19 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
             <form onSubmit={handleSubmit}>
               {mode === "written" ? (
                 <>
-                  <input
-                    type="text"
+                  <ServiceCommandInput
                     value={userAnswer}
-                    onChange={(e) => setUserAnswer(e.target.value)}
-                    placeholder="Enter service name..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
-                    autoFocus
+                    onChange={setUserAnswer}
+                    onSubmit={() => {
+                      if (userAnswer.trim()) {
+                        handleSubmit(new Event("submit") as any);
+                      }
+                    }}
                   />
                   <button
                     type="submit"
                     disabled={!userAnswer.trim()}
-                    className="w-full bg-amazon-orange text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                    className="w-full font-semibold cursor-pointer bg-amazon-orange text-black px-6 py-3 rounded-lg hover:bg-dark-amazon-orange transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed mt-4"
                   >
                     Submit Answer
                   </button>
@@ -264,23 +266,21 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
               className={`mb-6 p-4 rounded-lg ${
                 isCorrect
                   ? "bg-green-background border-2 border-green-border"
-                  : "bg-red-background border-2 border-red-border"
+                  : "bg-red-100 border-2 border-red-400"
               }`}
             >
               <p
                 className={`text-base text-primary font-semibold flex items-center gap-x-2`}
               >
-                {isCorrect ? (
-                  <CheckCircle
-                    className={`w-4 h-4 text-green-border`}
-                  />
-                ) : (
-                  <HeartCrack className="w-5 h-5 text-red-border" />
-                )}
-                {isCorrect ? "Correct! 🎉" : "Incorrect"}
+                <CheckCircle
+                  className={`w-4 h-4 ${
+                    isCorrect ? "text-green-border" : "text-red-700"
+                  }`}
+                />
+                {isCorrect ? "Correct! 🎉" : "Incorrect ❌"}
               </p>
               {!isCorrect && (
-                <p className="text-primary mt-2">
+                <p className="text-gray-700 mt-2">
                   Your answer:{" "}
                   <span className="font-semibold">
                     {mode === "written" ? userAnswer : selectedChoice}

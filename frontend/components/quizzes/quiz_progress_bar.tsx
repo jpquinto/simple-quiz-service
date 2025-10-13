@@ -1,4 +1,4 @@
-import { Check, X } from "lucide-react";
+import { Check, HeartCrack, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface QuizProgressBarProps {
@@ -52,13 +52,13 @@ export const QuizProgressBar = ({ history }: QuizProgressBarProps) => {
           className={`w-5 h-5 rounded-full flex items-center justify-center transition-all duration-300 ${
             isCorrect
               ? "bg-green-background border-2 border-green-border"
-              : "bg-red-100 border-2 border-red-400"
+              : "bg-transparent"
           }`}
         >
           {isCorrect ? (
             <Check className="w-4 h-4 text-green-border" />
           ) : (
-            <X className="w-4 h-4 text-red-700" />
+            <HeartCrack className="w-4 h-4 text-red-border" />
           )}
         </div>
       ))}

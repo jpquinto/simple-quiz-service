@@ -107,10 +107,10 @@
   --blue-background: oklch(0.1786 0.0562 253.63);
   --light-blue: oklch(0.8165 0.1098 233.62);
   --option-background: oklch(0.253 0.0223 254.22);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.253 0.0223 254.22);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.253 0.0223 254.22);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted-text: oklch(0.6977 0.0376 216.74);

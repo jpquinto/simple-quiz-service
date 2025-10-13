@@ -22,7 +22,7 @@ export default function ServicesQuizPage() {
     return (
       <main className="flex-1">
         <div>
-          <Container className="-translate-y-10 relative overflow-visible z-[999]">
+          <Container className="-translate-y-10 relative overflow-visible">
             <div className="max-w-2xl mx-auto p-6 h-[100dvh] flex justify-center items-center">
               <div className="bg-card border-[#2c323b] border-[1px] text-primary rounded-lg shadow-lg p-8 w-full">
                 <h2 className="text-2xl font-bold text-primary mb-2 text-center">
@@ -68,7 +68,7 @@ export default function ServicesQuizPage() {
   return (
     <main className="flex-1">
       <div>
-        <Container className="-translate-y-10 relative overflow-visible z-[999]">
+        <Container className="-translate-y-10 relative overflow-visible">
           <ServicesQuizClient mode={mode} />
         </Container>
       </div>

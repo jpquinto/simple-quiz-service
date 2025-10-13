@@ -192,7 +192,7 @@
        "acronym": "SQS"
    },
    {
-       "service_name": "Amazon SNS",
+       "service_name": "Amazon Simple Notification Service (SNS)",
        "service_icon": "https://icon.icepanel.io/AWS/svg/App-Integration/Simple-Notification-Service.svg",
        "description": "Fully managed pub/sub messaging service that enables you to decouple microservices, distributed systems, and serverless applications. Supports message delivery to multiple subscribers including mobile push, SMS, email, and HTTP endpoints.",
        "tags": [
@@ -300,7 +300,7 @@
        "acronym": ""
    },
    {
-       "service_name": "Amazon VPC",
+       "service_name": "Amazon Virtual Private Cloud (VPC)",
        "service_icon": "https://icon.icepanel.io/AWS/svg/Networking-Content-Delivery/Virtual-Private-Cloud.svg",
        "description": "Service that lets you provision a logically isolated section of the AWS cloud where you can launch resources in a virtual network. Provides complete control over network configuration including IP address ranges, subnets, route tables, and network gateways.",
        "tags": [
@@ -408,7 +408,7 @@
        "acronym": ""
    },
    {
-       "service_name": "Amazon ECS",
+       "service_name": "Amazon Elastic Container Service (ECS)",
        "service_icon": "https://icon.icepanel.io/AWS/svg/Containers/Elastic-Container-Service.svg",
        "description": "Fully managed container orchestration service that makes it easy to deploy, manage, and scale containerized applications. Supports Docker containers and integrates deeply with AWS services.",
        "tags": [

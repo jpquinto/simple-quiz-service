@@ -3,6 +3,7 @@ import { PT_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
+import { ServicesProvider } from "@/components/services-provider";
 
 const ptSans = PT_Sans({
   variable: "--font-pt-sans",
@@ -30,8 +31,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
+          <ServicesProvider>
+            <Navbar />
+            {children}
+          </ServicesProvider>
         </ThemeProvider>
       </body>
     </html>

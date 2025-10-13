@@ -1,7 +1,11 @@
-import { addServicesToAcronymTable, addServicesToServicesTable } from "./utils/add_services_to_dynamo";
+import {
+  addServicesToAcronymTable,
+  addServicesToServicesTable,
+} from "./utils/add_services_to_dynamo";
 import { getCurrentIds } from "./utils/get_current_ids";
 import { getCurrentIngestionFile } from "./utils/get_current_ingestion_file";
 import { updateCurrentIds } from "./utils/update_current_id";
+import { updateServicesList } from "./utils/update_services_list";
 
 /**
  * Lambda handler for S3 events.
@@ -64,6 +68,10 @@ export const handler = async (event: any, context: any) => {
             acronym_table: nextAcronymTableId,
           });
           console.log(`Successfully updated current IDs in ID status table`);
+
+          // Update the full services list
+          await updateServicesList();
+          console.log(`Successfully updated full services list`);
         } catch (error) {
           console.error(`Error processing file ${objectKey}:`, error);
           throw error; // Re-throw to mark Lambda execution as failed
