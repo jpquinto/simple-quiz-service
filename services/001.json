@@ -410,7 +410,7 @@
    {
        "service_name": "Amazon ECS",
        "service_icon": "https://icon.icepanel.io/AWS/svg/Containers/Elastic-Container-Service.svg",
-       "description": "Elastic Container Service is a fully managed container orchestration service that makes it easy to deploy, manage, and scale containerized applications. Supports Docker containers and integrates deeply with AWS services.",
+       "description": "Fully managed container orchestration service that makes it easy to deploy, manage, and scale containerized applications. Supports Docker containers and integrates deeply with AWS services.",
        "tags": [
            "containers",
            "orchestration",
@@ -437,7 +437,7 @@
    {
        "service_name": "Amazon EKS",
        "service_icon": "https://icon.icepanel.io/AWS/svg/Containers/Elastic-Kubernetes-Service.svg",
-       "description": "Elastic Kubernetes Service is a managed Kubernetes service that makes it easy to run Kubernetes on AWS without needing to install and operate your own Kubernetes control plane. Provides a certified conformant Kubernetes platform.",
+       "description": "Managed Kubernetes service that makes it easy to run Kubernetes on AWS without needing to install and operate your own Kubernetes control plane. Provides a certified conformant Kubernetes platform.",
        "tags": [
            "containers",
            "kubernetes",
