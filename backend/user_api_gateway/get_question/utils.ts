@@ -2,6 +2,7 @@ import {
   DynamoDBClient,
   QueryCommand,
   GetItemCommand,
+  BatchGetItemCommand,
 } from "@aws-sdk/client-dynamodb";
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 
@@ -29,24 +30,40 @@ export const getCurrentId = async (
   }
 };
 
-export const getQuestion = async (
+export const getQuestionsBatch = async (
   tableName: string,
-  id: string
-): Promise<any> => {
-  const getItemCommand = new GetItemCommand({
-    TableName: tableName,
-    Key: marshall({
-      service_id: id,
-    }),
-  });
+  ids: string[]
+): Promise<any[]> => {
+  // DynamoDB BatchGetItem supports up to 100 items per request
+  const BATCH_SIZE = 100;
+  const allQuestions: any[] = [];
 
-  const response = await client.send(getItemCommand);
+  for (let i = 0; i < ids.length; i += BATCH_SIZE) {
+    const batchIds = ids.slice(i, i + BATCH_SIZE);
 
-  if (response.Item) {
-    return unmarshall(response.Item);
-  } else {
-    throw new Error(
-      `No item found with service_id: ${id} in table: ${tableName}`
+    const keys = batchIds.map((id) =>
+      marshall({
+        service_id: id,
+      })
     );
+
+    const batchGetCommand = new BatchGetItemCommand({
+      RequestItems: {
+        [tableName]: {
+          Keys: keys,
+        },
+      },
+    });
+
+    const response = await client.send(batchGetCommand);
+
+    if (response.Responses && response.Responses[tableName]) {
+      const questions = response.Responses[tableName].map((item) =>
+        unmarshall(item)
+      );
+      allQuestions.push(...questions);
+    }
   }
+
+  return allQuestions;
 };

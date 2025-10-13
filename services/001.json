@@ -221,7 +221,7 @@
    {
        "service_name": "AWS Identity and Access Management (IAM)",
        "service_icon": "https://icon.icepanel.io/AWS/svg/Security-Identity-Compliance/Identity-and-Access-Management.svg",
-       "description": "Identity and Access Management service that enables you to securely control access to AWS services and resources. Create and manage AWS users and groups, and use permissions to allow and deny access to AWS resources.",
+       "description": "Service that enables you to securely control access to AWS services and resources. Create and manage AWS users and groups, and use permissions to allow and deny access to AWS resources.",
        "tags": [
            "security",
            "identity",
@@ -302,7 +302,7 @@
    {
        "service_name": "Amazon VPC",
        "service_icon": "https://icon.icepanel.io/AWS/svg/Networking-Content-Delivery/Virtual-Private-Cloud.svg",
-       "description": "Virtual Private Cloud service that lets you provision a logically isolated section of the AWS cloud where you can launch resources in a virtual network. Provides complete control over network configuration including IP address ranges, subnets, route tables, and network gateways.",
+       "description": "Service that lets you provision a logically isolated section of the AWS cloud where you can launch resources in a virtual network. Provides complete control over network configuration including IP address ranges, subnets, route tables, and network gateways.",
        "tags": [
            "networking",
            "security",
