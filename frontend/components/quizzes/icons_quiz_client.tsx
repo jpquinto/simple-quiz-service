@@ -10,17 +10,11 @@ import { ServiceCommandInput } from "./service_command_input";
 import { ServiceInfo } from "./service_info";
 import { isAnswerCorrect } from "@/utils/check_answer";
 
-interface ServicesQuizClientProps {
-  mode: "written" | "multiple-choice";
-}
-
-export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
+export const IconsQuizClient = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answeredQuestionIds, setAnsweredQuestionIds] = useState<string[]>([]);
   const [userAnswer, setUserAnswer] = useState("");
-  const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
-  const [choices, setChoices] = useState<string[]>([]);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [score, setScore] = useState(0);
@@ -31,7 +25,7 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
   const [answerHistory, setAnswerHistory] = useState<boolean[]>([]);
 
   const currentQuestion = questions[currentQuestionIndex];
-  const questionNumber = score + (3 - lives) + 1; // Current question number
+  const questionNumber = score + (3 - lives) + 1;
 
   const fetchQuestions = async (excludeIds: string[] = []) => {
     setIsLoading(true);
@@ -42,29 +36,11 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
     if (response.success && response.questions) {
       setQuestions(response.questions);
       setCurrentQuestionIndex(0);
-
-      // Generate choices for the first question if in multiple-choice mode
-      if (mode === "multiple-choice" && response.questions.length > 0) {
-        generateChoices(response.questions[0]);
-      }
     } else {
       setError(response.error || "Failed to fetch questions");
     }
 
     setIsLoading(false);
-  };
-
-  const generateChoices = (question: Question) => {
-    if (mode === "multiple-choice" && question.related_services) {
-      const correctAnswer = question.service_name;
-      const wrongAnswers = question.related_services
-        .filter((service) => service !== correctAnswer)
-        .slice(0, 3);
-
-      const allChoices = [correctAnswer, ...wrongAnswers];
-      const shuffled = allChoices.sort(() => Math.random() - 0.5);
-      setChoices(shuffled);
-    }
   };
 
   useEffect(() => {
@@ -74,23 +50,14 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!currentQuestion) return;
+    if (!currentQuestion || !userAnswer.trim()) return;
 
-    let correct = false;
-
-    if (mode === "written") {
-      if (!userAnswer.trim()) return;
-      correct = isAnswerCorrect(userAnswer, currentQuestion.service_name);
-    } else {
-      if (!selectedChoice) return;
-      correct = selectedChoice === currentQuestion.service_name;
-    }
+    const correct = isAnswerCorrect(userAnswer, currentQuestion.service_name);
 
     setIsCorrect(correct);
     setIsAnswered(true);
     setAnswerHistory([...answerHistory, correct]);
 
-    // Add current question ID to answered list
     setAnsweredQuestionIds([
       ...answeredQuestionIds,
       currentQuestion.service_id,
@@ -118,24 +85,14 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
       return;
     }
 
-    // Reset answer state
     setUserAnswer("");
-    setSelectedChoice(null);
     setIsAnswered(false);
 
-    // Check if we need to fetch more questions
     if (currentQuestionIndex >= questions.length - 3) {
-      // Fetch more questions when we're near the end
       await fetchQuestions(answeredQuestionIds);
     } else {
-      // Move to next question
       const nextIndex = currentQuestionIndex + 1;
       setCurrentQuestionIndex(nextIndex);
-
-      // Generate choices for the next question if in multiple-choice mode
-      if (mode === "multiple-choice" && questions[nextIndex]) {
-        generateChoices(questions[nextIndex]);
-      }
     }
   };
 
@@ -158,7 +115,6 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
       <QuizProgressBar history={answerHistory} />
 
       <div className="min-w-[39rem] bg-card border-amazon-border border-[1px] text-primary rounded-lg shadow-lg p-8">
-        {/* Score and Lives */}
         <div className="flex justify-between items-center mb-6">
           <div className="flex flex-col gap-1">
             <div className="text-sm text-gray-400">
@@ -181,7 +137,6 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
           </div>
         </div>
 
-        {/* Loading State */}
         {isLoading && (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amazon-orange mx-auto"></div>
@@ -189,80 +144,53 @@ export const ServicesQuizClient = ({ mode }: ServicesQuizClientProps) => {
           </div>
         )}
 
-        {/* Error State */}
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             {error}
           </div>
         )}
 
-        {/* Question Display */}
         {!isLoading && currentQuestion && !isAnswered && (
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-primary">
+            <h3 className="text-lg font-semibold mb-4 text-primary text-center">
               What AWS service is this?
             </h3>
-            <p className="text-muted-text mb-6 leading-relaxed">
-              {currentQuestion.description}
-            </p>
+
+            {/* Icon Display */}
+            <div className="flex justify-center mb-6">
+              <img
+                src={currentQuestion.service_icon}
+                alt="AWS Service Icon"
+                className="w-32 h-32 object-contain"
+              />
+            </div>
 
             <form onSubmit={handleSubmit}>
-              {mode === "written" ? (
-                <>
-                  <ServiceCommandInput
-                    value={userAnswer}
-                    onChange={setUserAnswer}
-                    onSubmit={() => {
-                      if (userAnswer.trim()) {
-                        handleSubmit(new Event("submit") as any);
-                      }
-                    }}
-                  />
-                  <button
-                    type="submit"
-                    disabled={!userAnswer.trim()}
-                    className="w-full font-semibold cursor-pointer bg-amazon-orange text-black px-6 py-3 rounded-lg hover:bg-dark-amazon-orange transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed mt-4"
-                  >
-                    Submit Answer
-                  </button>
-                </>
-              ) : (
-                <>
-                  <div className="space-y-3 mb-4">
-                    {choices.map((choice, index) => (
-                      <button
-                        key={index}
-                        type="button"
-                        onClick={() => setSelectedChoice(choice)}
-                        className={`w-full cursor-pointer px-4 py-3 border-2 rounded-lg font-semibold text-left transition-colors ${
-                          selectedChoice === choice
-                            ? "border-blue-border bg-blue-background"
-                            : "bg-option-background border-transparent hover:border-blue-border"
-                        }`}
-                      >
-                        {choice}
-                      </button>
-                    ))}
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={!selectedChoice}
-                    className="w-full cursor-pointer bg-amazon-orange text-black font-semibold px-6 py-3 rounded-lg hover:bg-dark-amazon-orange transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-                  >
-                    Submit Answer
-                  </button>
-                </>
-              )}
+              <ServiceCommandInput
+                value={userAnswer}
+                onChange={setUserAnswer}
+                onSubmit={() => {
+                  if (userAnswer.trim()) {
+                    handleSubmit(new Event("submit") as any);
+                  }
+                }}
+              />
+              <button
+                type="submit"
+                disabled={!userAnswer.trim()}
+                className="w-full font-semibold cursor-pointer bg-amazon-orange text-black px-6 py-3 rounded-lg hover:bg-dark-amazon-orange transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed mt-4"
+              >
+                Submit Answer
+              </button>
             </form>
           </div>
         )}
 
-        {/* Answer Result */}
         {!isLoading && currentQuestion && isAnswered && (
           <ServiceInfo
             question={currentQuestion}
             isCorrect={isCorrect}
-            userAnswer={mode === "written" ? userAnswer : selectedChoice!}
+            userAnswer={userAnswer}
             onProceed={handleProceed}
           />
         )}

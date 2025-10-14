@@ -26,7 +26,7 @@
        "AWS Secrets Manager",
        "AWS KMS"
      ],
-     "acronym": ""
+     "link_to_amazon": "https://aws.amazon.com/cognito/"
    },
 
    {
@@ -54,7 +54,7 @@
            "AWS Fargate",
            "Amazon CloudWatch"
        ],
-       "acronym": ""
+       "link_to_amazon": "https://aws.amazon.com/lambda/"
    },
    {
        "service_name": "Amazon Elastic Compute Cloud (EC2)",
@@ -81,7 +81,8 @@
            "Amazon Lightsail",
            "AWS Systems Manager"
        ],
-       "acronym": "EC2"
+       "acronym": "EC2",
+       "link_to_amazon": "https://aws.amazon.com/ec2/"
    },
    {
        "service_name": "Amazon EventBridge",
@@ -108,7 +109,7 @@
            "AWS Step Functions",
            "Amazon CloudWatch Events"
        ],
-       "acronym": ""
+       "link_to_amazon": "https://aws.amazon.com/eventbridge/"
    },
    {
        "service_name": "Amazon Relational Database Service (RDS)",
@@ -135,7 +136,8 @@
            "Amazon Redshift",
            "AWS Database Migration Service"
        ],
-       "acronym": "RDS"
+       "acronym": "RDS",
+       "link_to_amazon": "https://aws.amazon.com/rds/"
    },
    {
        "service_name": "Amazon Simple Storage Service (S3)",
@@ -162,7 +164,8 @@
            "Amazon Glacier",
            "AWS Storage Gateway"
        ],
-       "acronym": "S3"
+       "acronym": "S3",
+       "link_to_amazon": "https://aws.amazon.com/s3/"
    },
    {
        "service_name": "Amazon Simple Queue Service (SQS)",
@@ -189,7 +192,8 @@
            "Amazon MQ",
            "Amazon Kinesis"
        ],
-       "acronym": "SQS"
+       "acronym": "SQS",
+       "link_to_amazon": "https://aws.amazon.com/sqs/"
    },
    {
        "service_name": "Amazon Simple Notification Service (SNS)",
@@ -216,7 +220,8 @@
            "Amazon Pinpoint",
            "Amazon SES"
        ],
-       "acronym": "SNS"
+       "acronym": "SNS",
+       "link_to_amazon": "https://aws.amazon.com/sns/"
    },
    {
        "service_name": "AWS Identity and Access Management (IAM)",
@@ -243,7 +248,8 @@
            "AWS Secrets Manager",
            "AWS Directory Service"
        ],
-       "acronym": "IAM"
+       "acronym": "IAM",
+       "link_to_amazon": "https://aws.amazon.com/iam/"
    },
    {
        "service_name": "Amazon CloudWatch",
@@ -270,7 +276,7 @@
            "Amazon EventBridge",
            "AWS Systems Manager"
        ],
-       "acronym": ""
+       "link_to_amazon": "https://aws.amazon.com/cloudwatch/"
    },
    {
        "service_name": "AWS CloudFormation",
@@ -297,7 +303,7 @@
            "Terraform",
            "AWS Service Catalog"
        ],
-       "acronym": ""
+       "link_to_amazon": "https://aws.amazon.com/cloudformation/"
    },
    {
        "service_name": "Amazon Virtual Private Cloud (VPC)",
@@ -324,7 +330,8 @@
            "AWS VPN",
            "AWS Direct Connect"
        ],
-       "acronym": "VPC"
+       "acronym": "VPC",
+       "link_to_amazon": "https://aws.amazon.com/vpc/"
    },
    {
        "service_name": "Amazon API Gateway",
@@ -351,7 +358,7 @@
            "AWS Lambda",
            "Application Load Balancer"
        ],
-       "acronym": ""
+       "link_to_amazon": "https://aws.amazon.com/api-gateway/"
    },
    {
        "service_name": "Amazon DynamoDB",
@@ -378,7 +385,7 @@
            "Amazon Neptune",
            "AWS DynamoDB Accelerator (DAX)"
        ],
-       "acronym": ""
+       "link_to_amazon": "https://aws.amazon.com/dynamodb/"
    },
    {
        "service_name": "Amazon CloudFront",
@@ -405,7 +412,7 @@
            "AWS WAF",
            "AWS Certificate Manager"
        ],
-       "acronym": ""
+       "link_to_amazon": "https://aws.amazon.com/cloudfront/"
    },
    {
        "service_name": "Amazon Elastic Container Service (ECS)",
@@ -432,10 +439,11 @@
            "AWS Lambda",
            "Amazon ECR"
        ],
-       "acronym": "ECS"
+       "acronym": "ECS",
+       "link_to_amazon": "https://aws.amazon.com/ecs/"
    },
    {
-       "service_name": "Amazon EKS",
+       "service_name": "Amazon Elastic Kubernetes Service (EKS)",
        "service_icon": "https://icon.icepanel.io/AWS/svg/Containers/Elastic-Kubernetes-Service.svg",
        "description": "Managed Kubernetes service that makes it easy to run Kubernetes on AWS without needing to install and operate your own Kubernetes control plane. Provides a certified conformant Kubernetes platform.",
        "tags": [
@@ -459,7 +467,8 @@
            "Amazon ECR",
            "AWS App Mesh"
        ],
-       "acronym": "EKS"
+       "acronym": "EKS",
+       "link_to_amazon": "https://aws.amazon.com/eks/"
    },
    {
        "service_name": "AWS Elastic Beanstalk",
@@ -486,7 +495,7 @@
            "AWS App Runner",
            "AWS CloudFormation"
        ],
-       "acronym": ""
+       "link_to_amazon": "https://aws.amazon.com/elasticbeanstalk/"
    },
    {
        "service_name": "Amazon Route 53",
@@ -513,7 +522,7 @@
            "Elastic Load Balancing",
            "AWS Certificate Manager"
        ],
-       "acronym": ""
+       "link_to_amazon": "https://aws.amazon.com/route53/"
    }
  ] 
 }

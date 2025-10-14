@@ -27,7 +27,7 @@ export const addServicesToServicesTable = async ({
 
     const writeRequests = batch.map((service) => {
       const item = {
-        service_id: currentId.toString(), // Convert to string
+        service_id: currentId.toString(),
         ...service,
       };
       currentId++;
@@ -70,7 +70,8 @@ export const addServicesToAcronymTable = async ({
 
     const writeRequests = batch.map((service) => {
       const item = {
-        service_id: currentId.toString(), // Convert to string
+        service_id: currentId.toString(),
+        type: "aws",
         ...service,
       };
       currentId++;

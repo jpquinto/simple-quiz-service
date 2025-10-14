@@ -11,6 +11,7 @@ export interface Question {
     service_icon: string;
     service_name: string;
     tags: string[];
+    link_to_amazon: string;
 }
 
 export interface GetQuestionsResponse {

@@ -3,12 +3,11 @@
 import { useState, useEffect } from "react";
 import { getQuestions } from "@/actions/get_question";
 import { Question } from "@/types/question";
-import Image from "next/image";
 import { GameOver } from "./game_over";
-import { CheckCircle, Heart, HeartCrack } from "lucide-react";
-import { TagsList } from "../ui/tag";
+import { Heart, HeartCrack } from "lucide-react";
 import { QuizProgressBar } from "./quiz_progress_bar";
-import { ServiceCommandInput } from "./service_command_input";
+import { ServiceInfo } from "./service_info";
+import { isAnswerCorrect } from "@/utils/check_answer";
 
 export const AcronymQuizClient = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -43,7 +42,7 @@ export const AcronymQuizClient = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await getQuestions("service", 10, excludeIds);
+    const response = await getQuestions("acronym", 10, excludeIds);
 
     if (response.success && response.questions) {
       setQuestions(response.questions);
@@ -65,8 +64,7 @@ export const AcronymQuizClient = () => {
     if (!currentQuestion || !userAnswer.trim()) return;
 
     const correctAnswer = trimServiceName(currentQuestion.service_name);
-    const correct =
-      userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase();
+    const correct = isAnswerCorrect(userAnswer, correctAnswer);
 
     setIsCorrect(correct);
     setIsAnswered(true);
@@ -119,15 +117,27 @@ export const AcronymQuizClient = () => {
     await fetchQuestions();
   };
 
+  // Handle Enter key press when answer is shown
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === "Enter" && isAnswered) {
+        handleProceed();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [isAnswered]);
+
   if (gameOver) {
     return GameOver({ score, handleRestart });
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6 h-[100dvh] flex justify-center items-center relative">
+    <div className="min-w-3xl max-w-3xl mx-auto p-6 h-[100dvh] flex justify-center items-center relative">
       <QuizProgressBar history={answerHistory} />
 
-      <div className="bg-card border-amazon-border border-[1px] text-primary rounded-lg shadow-lg p-8">
+      <div className="min-w-[39rem] bg-card border-amazon-border border-[1px] text-primary rounded-lg shadow-lg p-8">
         {/* Score and Lives */}
         <div className="flex justify-between items-center mb-6">
           <div className="flex flex-col gap-1">
@@ -170,7 +180,7 @@ export const AcronymQuizClient = () => {
         {!isLoading && currentQuestion && !isAnswered && (
           <div>
             <h3 className="text-lg font-semibold mb-4 text-primary">
-              What does this AWS acronym stand for?
+              What does this acronym stand for?
             </h3>
             <div className="mb-6 p-8 bg-gradient-to-br from-amazon-orange/10 to-amazon-orange/5 rounded-lg border-2 border-amazon-orange/20">
               <p className="text-5xl font-bold text-center text-amazon-orange">
@@ -179,20 +189,18 @@ export const AcronymQuizClient = () => {
             </div>
 
             <form onSubmit={handleSubmit}>
-              <ServiceCommandInput
+              <input
+                type="text"
                 value={userAnswer}
-                onChange={setUserAnswer}
-                onSubmit={() => {
-                  if (userAnswer.trim()) {
-                    handleSubmit(new Event("submit") as any);
-                  }
-                }}
-                serviceNameFormatter={trimServiceName}
+                onChange={(e) => setUserAnswer(e.target.value)}
+                placeholder="Type your answer..."
+                className="w-full px-4 py-3 rounded-lg border-2 border-blue-border/50 focus:border-blue-border focus:outline-none text-lg mb-4 bg-blue-background text-primary"
+                autoFocus
               />
               <button
                 type="submit"
                 disabled={!userAnswer.trim()}
-                className="w-full font-semibold cursor-pointer bg-amazon-orange text-black px-6 py-3 rounded-lg hover:bg-dark-amazon-orange transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed mt-4"
+                className="w-full font-semibold cursor-pointer bg-amazon-orange text-black px-6 py-3 rounded-lg hover:bg-dark-amazon-orange transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
                 Submit Answer
               </button>
@@ -202,63 +210,12 @@ export const AcronymQuizClient = () => {
 
         {/* Answer Result */}
         {!isLoading && currentQuestion && isAnswered && (
-          <div>
-            <div
-              className={`mb-6 p-4 rounded-lg ${
-                isCorrect
-                  ? "bg-green-background border-2 border-green-border"
-                  : "bg-red-100 border-2 border-red-400"
-              }`}
-            >
-              <p
-                className={`text-base text-primary font-semibold flex items-center gap-x-2`}
-              >
-                <CheckCircle
-                  className={`w-4 h-4 ${
-                    isCorrect ? "text-green-border" : "text-red-700"
-                  }`}
-                />
-                {isCorrect ? "Correct! 🎉" : "Incorrect ❌"}
-              </p>
-              {!isCorrect && (
-                <p className="text-gray-700 mt-2">
-                  Your answer:{" "}
-                  <span className="font-semibold">{userAnswer}</span>
-                </p>
-              )}
-            </div>
-
-            <div className="mb-6">
-              {currentQuestion.service_icon && (
-                <div className="mb-4 flex justify-start">
-                  <Image
-                    src={currentQuestion.service_icon}
-                    alt={currentQuestion.service_name}
-                    width={80}
-                    height={80}
-                    style={{ borderRadius: "2px" }}
-                  />
-                </div>
-              )}
-              <h3 className="text-2xl font-bold text-primary mb-2">
-                {currentQuestion.service_name}
-              </h3>
-              <p className="mb-4 text-muted-text">
-                {currentQuestion.description}
-              </p>
-
-              {currentQuestion.tags && currentQuestion.tags.length > 0 && (
-                <TagsList tags={currentQuestion.tags} />
-              )}
-            </div>
-
-            <button
-              onClick={handleProceed}
-              className="w-full cursor-pointer bg-amazon-orange text-black font-semibold px-6 py-3 rounded-lg hover:bg-dark-amazon-orange transition-colors"
-            >
-              Next Question
-            </button>
-          </div>
+          <ServiceInfo
+            question={currentQuestion}
+            isCorrect={isCorrect}
+            userAnswer={userAnswer}
+            onProceed={handleProceed}
+          />
         )}
       </div>
     </div>

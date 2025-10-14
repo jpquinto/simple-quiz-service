@@ -22,6 +22,7 @@ Elastic Beanstalk
 Route 53
 
 Elastic Load Balancing
+Organizations
 Auto Scaling
 CloudTrail
 KMS

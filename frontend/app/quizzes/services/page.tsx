@@ -3,18 +3,13 @@
 import { ServicesQuizClient } from "@/components/quizzes/services_quiz_client";
 import Container from "@/components/ui/container";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
 
 export default function ServicesQuizPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const mode = searchParams.get("mode") as "written" | "multiple-choice" | null;
-  const [selectedMode, setSelectedMode] = useState<
-    "written" | "multiple-choice" | null
-  >(null);
 
   const handleModeSelect = (selectedMode: "written" | "multiple-choice") => {
-    setSelectedMode(selectedMode);
     router.push(`/quizzes/services?mode=${selectedMode}`);
   };
 
@@ -35,7 +30,7 @@ export default function ServicesQuizPage() {
                 <div className="space-y-4">
                   <button
                     onClick={() => handleModeSelect("multiple-choice")}
-                    className="w-full p-6 bg-[#1B232D] border-2 border-transparent hover:border-[#328CC9] rounded-lg transition-colors text-left"
+                    className="w-full cursor-pointer p-6 bg-[#1B232D] border-2 border-transparent hover:border-[#328CC9] rounded-lg transition-colors text-left"
                   >
                     <h3 className="text-xl font-semibold text-primary mb-2">
                       Multiple Choice
@@ -47,7 +42,7 @@ export default function ServicesQuizPage() {
 
                   <button
                     onClick={() => handleModeSelect("written")}
-                    className="w-full p-6 bg-[#1B232D] border-2 border-transparent hover:border-[#328CC9] rounded-lg transition-colors text-left"
+                    className="w-full cursor-pointer p-6 bg-[#1B232D] border-2 border-transparent hover:border-[#328CC9] rounded-lg transition-colors text-left"
                   >
                     <h3 className="text-xl font-semibold text-primary mb-2">
                       Written Answer
