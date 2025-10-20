@@ -24,13 +24,13 @@ export default function ServicesQuizPage() {
                   AWS Services Quiz
                 </h2>
                 <p className="text-[#84A4AD] mb-8 text-center">
-                  Choose your quiz mode to get started
+                  Choose your quiz mode to get started!
                 </p>
 
                 <div className="space-y-4">
                   <button
                     onClick={() => handleModeSelect("multiple-choice")}
-                    className="w-full cursor-pointer p-6 bg-[#1B232D] border-2 border-transparent hover:border-[#328CC9] rounded-lg transition-colors text-left"
+                    className="w-full cursor-pointer p-6 bg-[#1B232D] border-2 border-transparent hover:border-[#328CC9] hover:bg-blue-background rounded-lg transition-colors text-left"
                   >
                     <h3 className="text-xl font-semibold text-primary mb-2">
                       Multiple Choice
@@ -42,7 +42,7 @@ export default function ServicesQuizPage() {
 
                   <button
                     onClick={() => handleModeSelect("written")}
-                    className="w-full cursor-pointer p-6 bg-[#1B232D] border-2 border-transparent hover:border-[#328CC9] rounded-lg transition-colors text-left"
+                    className="w-full cursor-pointer p-6 bg-[#1B232D] border-2 border-transparent hover:border-[#328CC9] hover:bg-blue-background rounded-lg transition-colors text-left"
                   >
                     <h3 className="text-xl font-semibold text-primary mb-2">
                       Written Answer

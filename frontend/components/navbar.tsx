@@ -22,9 +22,9 @@ export const Navbar = () => {
   ]
 
   return (
-    <header className="top-0 fixed w-[100dvw] z-[995]">
-      <nav className="w-full">
-        <div className="flex justify-between items-center border-b-[2px] border-b-[#22272F]">
+    <header className="top-0 fixed w-[100dvw] z-[995] bg-inherit">
+      <nav className="w-full bg-inherit">
+        {/* <div className="flex justify-between items-center border-b-[2px] border-b-[#22272F]">
           <div></div>
           <div className="flex">
             <DropdownMenu>
@@ -36,7 +36,7 @@ export const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-        </div>
+        </div> */}
         <div className="px-4 flex justify-start items-center gap-x-3 border-b-[2px] border-b-[#22272F]">
           {links.map((link) => {
             const pathname = usePathname();

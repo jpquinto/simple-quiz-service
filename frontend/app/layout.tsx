@@ -12,9 +12,9 @@ const ptSans = PT_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "AWS Quiz Game",
+  title: "Simple Quiz Service",
   description:
-    "Test your knowledge of AWS services with this fun and interactive quiz game!",
+    "Simple AWS Quiz games to test and improve your knowledge of AWS services and icons.",
 };
 
 export default function RootLayout({
