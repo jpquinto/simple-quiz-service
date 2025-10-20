@@ -3,6 +3,7 @@
 import { ServicesQuizClient } from "@/components/quizzes/services_quiz_client";
 import Container from "@/components/ui/container";
 import { useSearchParams, useRouter } from "next/navigation";
+import { Suspense } from "react";
 
 export default function ServicesQuizPage() {
   const searchParams = useSearchParams();
@@ -61,12 +62,21 @@ export default function ServicesQuizPage() {
   }
 
   return (
-    <main className="flex-1">
-      <div>
-        <Container className="-translate-y-10 relative overflow-visible">
-          <ServicesQuizClient mode={mode} />
-        </Container>
-      </div>
-    </main>
+    <Suspense
+      fallback={
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amazon-orange mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      }
+    >
+      <main className="flex-1">
+        <div>
+          <Container className="-translate-y-10 relative overflow-visible">
+            <ServicesQuizClient mode={mode} />
+          </Container>
+        </div>
+      </main>
+    </Suspense>
   );
 }
