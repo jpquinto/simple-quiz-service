@@ -2,16 +2,13 @@
 
 import { ServicesQuizClient } from "@/components/quizzes/services_quiz_client";
 import Container from "@/components/ui/container";
-import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense } from "react";
+import { useState } from "react";
 
 export default function ServicesQuizPage() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const mode = searchParams.get("mode") as "written" | "multiple-choice" | null;
+  const [mode, setMode] = useState<"written" | "multiple-choice" | null>(null);
 
   const handleModeSelect = (selectedMode: "written" | "multiple-choice") => {
-    router.push(`/quizzes/services?mode=${selectedMode}`);
+    setMode(selectedMode);
   };
 
   if (!mode) {
@@ -62,21 +59,12 @@ export default function ServicesQuizPage() {
   }
 
   return (
-    <Suspense
-      fallback={
-        <div className="text-center py-12">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amazon-orange mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      }
-    >
-      <main className="flex-1">
-        <div>
-          <Container className="-translate-y-10 relative overflow-visible">
-            <ServicesQuizClient mode={mode} />
-          </Container>
-        </div>
-      </main>
-    </Suspense>
+    <main className="flex-1">
+      <div>
+        <Container className="-translate-y-10 relative overflow-visible">
+          <ServicesQuizClient mode={mode} />
+        </Container>
+      </div>
+    </main>
   );
 }
